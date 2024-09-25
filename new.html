@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idea Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #FFB6C1; /* Baby pink */
+			text-align: center; /* Center text */
+        }
+        input, textarea {
+            width: 100%;
+            margin: 10px 0;
+			text-align: center;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .idea-list {
+            margin-top: 20px;
+        }
+        .idea-item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: white; /* White background for idea items */
+            text-align: left; /* Align text inside idea items to left */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>أكتب فكرتك الجميلة</h1>
+    <form id="ideaForm">
+        <input type="text" id="title" placeholder="عنوان الفكرة" required>
+        <textarea id="description" placeholder="وصف للفكرة" required></textarea>
+        <input type="text" id="name" placeholder="أسمك الكريم" required>
+        <button type="submit">Submit Idea</button>
+    </form>
+
+    <div class="idea-list" id="ideaList"></div>
+
+    <script>
+        document.getElementById('ideaForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const name = document.getElementById('name').value;
+
+            const ideaList = document.getElementById('ideaList');
+            const newIdea = document.createElement('div');
+            newIdea.className = 'idea-item';
+            newIdea.innerHTML = `<strong>${title}</strong><p>${description}</p><small>Submitted by: ${name}</small>`;
+            ideaList.appendChild(newIdea);
+
+            // Clear the form
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
