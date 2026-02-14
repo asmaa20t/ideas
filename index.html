@@ -2,62 +2,103 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Valentine Question ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine 💖</title>
 
 <style>
-    body {
-        text-align: center;
-        font-family: Arial, sans-serif;
-        background-color: #ffe6f0;
-        margin-top: 100px;
-    }
 
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #ffe6f0, #fff);
+    margin-top: 80px;
+    overflow: hidden;
+}
+
+h1 {
+    color: #ff4d88;
+    font-size: 2.2em;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background-color: #ff4d88;
+    color: white;
+}
+
+#noBtn {
+    background-color: gray;
+    color: white;
+    position: absolute;
+}
+
+#message {
+    font-size: 28px;
+    color: red;
+    margin-top: 40px;
+    display: none;
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    color: red;
+    font-size: 20px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float {
+    from {transform: translateY(0);}
+    to {transform: translateY(-100vh);}
+}
+
+/* Mobile design */
+@media (max-width: 600px) {
     h1 {
-        color: #ff4d88;
+        font-size: 1.6em;
     }
 
     button {
-        padding: 15px 25px;
-        font-size: 18px;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        margin: 10px;
-        transition: 0.3s;
+        font-size: 16px;
+        padding: 12px 20px;
     }
+}
 
-    #yesBtn {
-        background-color: #ff4d88;
-        color: white;
-    }
-
-    #noBtn {
-        background-color: gray;
-        color: white;
-        position: absolute;
-    }
-
-    #message {
-        font-size: 30px;
-        color: red;
-        margin-top: 40px;
-        display: none;
-    }
 </style>
 </head>
 
 <body>
 
-<h1>Will You Be My Valentine? ❤️</h1>
+<!-- 🎵 Romantic music -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<h1>Will You Be My Valentine, Amir ❤️??</h1>
 
 <button id="yesBtn" onclick="showLove()">Yes 💖</button>
 <button id="noBtn" onmouseover="moveButton()">No 😢</button>
 
 <div id="message">
-    ❤️ I LOVE YOU ❤️
+    ❤️ I LOVE YOU SO MUCH ❤️
 </div>
 
 <script>
+
+// تشغيل الموسيقى بعد أول ضغط
+document.body.addEventListener("click", function() {
+    document.getElementById("music").play();
+}, { once: true });
+
 function moveButton() {
     let button = document.getElementById("noBtn");
 
@@ -69,9 +110,31 @@ function moveButton() {
 }
 
 function showLove() {
+
     document.getElementById("message").style.display = "block";
+
+    // قلوب تطير
+    setInterval(createHeart, 300);
 }
+
+function createHeart() {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "0";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
 </script>
 
 </body>
 </html>
+
+
